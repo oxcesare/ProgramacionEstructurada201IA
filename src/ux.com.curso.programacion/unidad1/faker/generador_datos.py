@@ -2,7 +2,7 @@
 from faker import Faker
 
 faker = Faker("es_MX")
-
+#python3 -m pip install Faker
 print("Generando Datos Dummy con Faker")
 
 print(f"Nombre: {faker.name()}")
