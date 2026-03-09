@@ -1,7 +1,7 @@
 """
 SINTANXIS MULTILINEA
 Este modulo simula funcion de activiacion de una neurona 
-Si la entrada superr el umbral (0.5), la neurona se dispara
+Si la entrada supera el umbral (0.5), la neurona se dispara
 """
 
 def acivar_neurona(valor_entrada):
