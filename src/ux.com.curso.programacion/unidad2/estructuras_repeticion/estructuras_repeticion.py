@@ -17,6 +17,11 @@ def ejemplo_for():
         print(f"  Número: {i}")
     print("\n")
 
+    # for que itera del 1 al 10
+    for numero in range(1, 11):
+        print(f"  Número: {numero}")
+    print("\n")
+
 
 def ejemplo_while():
     print("--- Estructura WHILE ---")
