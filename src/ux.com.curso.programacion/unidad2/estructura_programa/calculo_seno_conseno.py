@@ -1,6 +1,6 @@
 import math
 
-def demostracion():
+def demostracion_funciones_math():
     # Create a variable named x with this value. 
     x = 42
     # Then use math.cos and math.sin to compute the sine and cosine of ,
@@ -14,7 +14,7 @@ def demostracion():
 
 
 def main():
-    demostracion()
+    demostracion_funciones_math()
 
 if __name__ == "__main__":
     main()        

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCEP Practice Quiz: Control Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .option-card:hover { transform: translateY(-2px); transition: all 0.2s; }
+        pre { background-color: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans">
+    <div class="max-w-4xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-slate-800">Simulador PCEP: Estructuras de Control</h1>
+            <p class="text-slate-600 mt-2">Sección 3: Booleanos, if-else, while, for, break y continue</p>
+            <div class="mt-4 flex justify-center gap-4">
+                <span id="score-badge" class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Puntos: 0</span>
+                <span id="progress-badge" class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-semibold">Pregunta: 1/5</span>
+            </div>
+        </header>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="bg-white rounded-2xl shadow-xl p-6 md:p-10 border border-slate-200">
+            <div id="question-content">
+                <!-- Question will be injected here -->
+            </div>
+            
+            <div id="feedback-area" class="mt-8 hidden">
+                <div id="feedback-box" class="p-4 rounded-lg mb-4"></div>
+                <button id="next-btn" class="w-full bg-slate-800 text-white font-bold py-3 rounded-xl hover:bg-slate-700 transition">Siguiente Pregunta</button>
+            </div>
+        </div>
+
+        <!-- Final Results (Hidden initially) -->
+        <div id="results-container" class="hidden text-center bg-white rounded-2xl shadow-xl p-10 border border-slate-200">
+            <h2 class="text-4xl font-bold text-slate-800 mb-4">¡Examen Finalizado!</h2>
+            <div id="final-score" class="text-6xl font-black text-blue-600 mb-6">0%</div>
+            <p id="result-text" class="text-lg text-slate-600 mb-8"></p>
+            <button onclick="location.reload()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700">Reintentar</button>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "¿Cuál es el resultado del siguiente fragmento de código?",
+                code: "x = 1\ny = 2\n\nif x > y:\n    print(\"A\")\nelif x == y:\n    print(\"B\")\nelse:\n    print(\"C\")",
+                options: ["A", "B", "C", "Error de Sintaxis"],
+                correct: 2,
+                hint: "Evalúa las condiciones en orden. Si la primera es falsa, pasa a la siguiente.",
+                rationale: [
+                    "Incorrecto. x (1) no es mayor que y (2).",
+                    "Incorrecto. 1 no es igual a 2.",
+                    "Correcto. Como las condiciones 'if' y 'elif' son falsas, el flujo cae obligatoriamente en el bloque 'else'.",
+                    "Incorrecto. La estructura if-elif-else es válida."
+                ]
+            },
+            {
+                question: "¿Qué imprimirá este bucle con la cláusula 'else'?",
+                code: "for i in range(1, 3):\n    print(i, end=\" \")\nelse:\n    print(\"fin\")",
+                options: ["1 2 fin", "1 2 3 fin", "1 2", "fin"],
+                correct: 0,
+                hint: "Recuerda que range(inicio, fin) no incluye el número final.",
+                rationale: [
+                    "Correcto. range(1, 3) genera 1 y 2. El bloque 'else' en un for se ejecuta siempre que el bucle termine normalmente (sin un break).",
+                    "Incorrecto. range(1, 3) termina justo antes del 3.",
+                    "Incorrecto. Olvidaste que el bloque 'else' se ejecuta tras finalizar las iteraciones.",
+                    "Incorrecto. El cuerpo del bucle se ejecuta antes del else."
+                ]
+            },
+            {
+                question: "¿Cuántas veces se imprimirá la palabra 'Hola'?",
+                code: "i = 5\nwhile i > 0:\n    i -= 1\n    if i == 2:\n        break\n    print(\"Hola\")",
+                options: ["5", "3", "2", "4"],
+                correct: 2,
+                hint: "Rastrea el valor de 'i': empieza en 5, resta 1, luego imprime... hasta que i sea 2.",
+                rationale: [
+                    "Incorrecto. El bucle se rompe prematuramente.",
+                    "Incorrecto. Contemos: i=4 (imprime), i=3 (imprime), i=2 (break).",
+                    "Correcto. El bucle imprime cuando i es 4 y 3. Cuando i es 2, se ejecuta el 'break' y sale inmediatamente antes del print.",
+                    "Incorrecto. El break detiene el proceso antes de completar las 4 iteraciones."
+                ]
+            },
+            {
+                question: "¿Cuál es la salida de este código?",
+                code: "for n in range(4):\n    if n % 2 == 0:\n        continue\n    print(n, end=\" \")",
+                options: ["0 2", "1 3", "0 1 2 3", "2 4"],
+                correct: 1,
+                hint: "'continue' salta el resto del código dentro del bucle para esa iteración específica.",
+                rationale: [
+                    "Incorrecto. Estos son los números que activan el 'continue'.",
+                    "Correcto. range(4) es [0, 1, 2, 3]. Si el residuo de n/2 es 0 (par), el continue salta el print. Solo se imprimen los impares.",
+                    "Incorrecto. El continue evita que se impriman los pares.",
+                    "Incorrecto. range(4) no incluye el 4."
+                ]
+            },
+            {
+                question: "¿Qué ocurre en este escenario de anidamiento?",
+                code: "x = 0\nwhile x < 3:\n    y = 0\n    while y < 3:\n        y += 1\n        if y == 2:\n            continue\n        x += 1\nprint(x)",
+                options: ["3", "6", "9", "Bucle infinito"],
+                correct: 1,
+                hint: "Analiza dónde se incrementa 'x'. Se incrementa dentro del bucle interno, pero se salta una vez por cada ciclo de y.",
+                rationale: [
+                    "Incorrecto. x se incrementa varias veces en cada ciclo de y.",
+                    "Correcto. El bucle externo corre 3 veces. En cada una, y va de 1 a 3. Cuando y=2, x no aumenta. Así que x aumenta 2 veces por cada ciclo de y (cuando y=1 e y=3). 2 * 3 = 6.",
+                    "Incorrecto. El continue evita que x llegue a 9.",
+                    "Incorrecto. Todos los bucles tienen condiciones de salida claras."
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = quizData[currentQuestion];
+            const feedbackArea = document.getElementById('feedback-area');
+            const questionContent = document.getElementById('question-content');
+            
+            feedbackArea.classList.add('hidden');
+            document.getElementById('progress-badge').innerText = `Pregunta: ${currentQuestion + 1}/${quizData.length}`;
+
+            let html = `
+                <h3 class="text-xl font-semibold text-slate-800 mb-4">${q.question}</h3>
+                ${q.code ? `<pre class="mb-6"><code>${q.code}</code></pre>` : ''}
+                <div class="grid grid-cols-1 gap-3">
+            `;
+
+            q.options.forEach((opt, index) => {
+                html += `
+                    <button onclick="checkAnswer(${index})" class="option-btn w-full text-left p-4 border-2 border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 font-medium text-slate-700 option-card">
+                        ${opt}
+                    </button>
+                `;
+            });
+
+            html += `</div>
+                <div class="mt-6">
+                    <button onclick="showHint()" class="text-sm text-blue-600 font-semibold hover:underline">💡 Ver pista</button>
+                    <p id="hint-text" class="hidden text-sm italic text-slate-500 mt-2 bg-blue-50 p-2 rounded">${q.hint}</p>
+                </div>
+            `;
+            
+            questionContent.innerHTML = html;
+        }
+
+        window.checkAnswer = function(index) {
+            const q = quizData[currentQuestion];
+            const feedbackArea = document.getElementById('feedback-area');
+            const feedbackBox = document.getElementById('feedback-box');
+            const btns = document.querySelectorAll('.option-btn');
+
+            // Disable buttons
+            btns.forEach(btn => btn.disabled = true);
+
+            if (index === q.correct) {
+                score++;
+                feedbackBox.className = "p-4 rounded-lg mb-4 bg-green-100 text-green-800 border-l-4 border-green-500";
+                feedbackBox.innerHTML = `<strong>¡Correcto!</strong><br>${q.rationale[index]}`;
+                btns[index].classList.add('border-green-500', 'bg-green-50');
+            } else {
+                feedbackBox.className = "p-4 rounded-lg mb-4 bg-red-100 text-red-800 border-l-4 border-red-500";
+                feedbackBox.innerHTML = `<strong>Incorrecto.</strong><br>${q.rationale[index]}<br><br><small>La respuesta correcta era: ${q.options[q.correct]}</small>`;
+                btns[index].classList.add('border-red-500', 'bg-red-50');
+                btns[q.correct].classList.add('border-green-500', 'bg-green-50');
+            }
+
+            document.getElementById('score-badge').innerText = `Puntos: ${score}`;
+            feedbackArea.classList.remove('hidden');
+        };
+
+        window.showHint = function() {
+            document.getElementById('hint-text').classList.toggle('hidden');
+        };
+
+        document.getElementById('next-btn').onclick = () => {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        };
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            const results = document.getElementById('results-container');
+            const finalScorePercent = Math.round((score / quizData.length) * 100);
+            
+            results.classList.remove('hidden');
+            document.getElementById('final-score').innerText = `${finalScorePercent}%`;
+            
+            let message = "";
+            if (finalScorePercent >= 70) {
+                message = "¡Felicidades! Estás listo para esta sección del PCEP.";
+            } else {
+                message = "Sigue practicando. El PCEP requiere mucha atención a los detalles del flujo.";
+            }
+            document.getElementById('result-text').innerText = message;
+        }
+
+        // Initialize
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>
