@@ -1,6 +1,4 @@
 #Pregunta de examen certificación de Python - Unidad 3
-
-
 x = 1
 y = 2
 
