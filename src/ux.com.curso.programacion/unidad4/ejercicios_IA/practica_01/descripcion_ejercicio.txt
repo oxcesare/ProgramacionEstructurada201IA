@@ -1,0 +1,19 @@
+Instrucciones:
+
+Crea un archivo llamado ClasificadorPixeles.py.
+
+Constantes: Define UMBRAL_BAJO = 0.3 y UMBRAL_ALTO = 0.7.
+
+Entrada: Solicita al usuario un valor de "Intensidad de Píxel" (rango 0.0 a 1.0).
+
+Lógica de Clasificación:
+
+Si la intensidad es menor a 0.0 o mayor a 1.0: Imprime "Error: Valor de píxel inválido".
+
+Si la intensidad está entre 0.0 y UMBRAL_BAJO (inclusive): Imprime "Clasificación: Fondo (Oscuro)".
+
+Si la intensidad es mayor a UMBRAL_BAJO y menor que UMBRAL_ALTO: Imprime "Clasificación: Gris (Ruido)".
+
+Si la intensidad es mayor o igual a UMBRAL_ALTO: Imprime "Clasificación: Objeto (Brillante)".
+
+Cierre: Imprime "Análisis de imagen finalizado".
