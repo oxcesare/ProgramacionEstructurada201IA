@@ -24,14 +24,21 @@ def calcular_alerta(valor_normalizado):
     Devuelve 'CRÍTICO' si es > 0.8, 'PRECAUCIÓN' si es > 0.5,
     y 'NORMAL' en cualquier otro caso.
     """
-# IMPLEMENTAR AQUÍ
+    #   IMPLEMENTAR AQUÍ
+    if valor_normalizado > 0.8:
+        return 'CRÍTICO'
+    elif valor_normalizado > 0.5:
+        return 'PRECAUCIÓN'
+    else:
+        return 'NORMAL'
+
 
 def obtener_estadisticas(lista_datos):
     """
     FUNCIÓN 3: Recibe la lista de datos válidos.
     Devuelve una TUPLA con: (Valor máximo, Valor mínimo, Promedio).
     """
-# IMPLEMENTAR AQUÍ
+    # IMPLEMENTAR AQUÍ
 
 def generar_reporte(total_datos, validos, estadisticas):
     """
