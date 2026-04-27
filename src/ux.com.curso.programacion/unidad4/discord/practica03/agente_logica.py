@@ -108,8 +108,6 @@ def analizar_comando(entrada_usuario):
 
 
 
-
-
 if __name__ == "__main__":
     print("--- Agente de Lógica Estructurada V2 ---")
     while True:
