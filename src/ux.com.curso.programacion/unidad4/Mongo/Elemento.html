@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vulnerabilidad y Obsolescencia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { background-color: #0f172a; display: flex; justify-content: center; padding: 40px; }
+        .slide-container { 
+            width: 1280px; height: 720px; 
+            background: linear-gradient(135deg, #020617 0%, #1e1b4b 100%); 
+            color: #f8fafc; font-family: 'Urbanist', sans-serif; 
+            padding: 60px 80px; border: 1px solid #334155;
+            display: flex; flex-direction: column;
+        }
+        .slide-title { 
+            font-size: 44px; font-weight: 700; color: #fb7185; 
+            margin-bottom: 30px; border-left: 8px solid #fb7185; padding-left: 20px;
+        }
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+        .warning-box { 
+            background: rgba(190, 18, 60, 0.1); border: 1px solid #fb7185; 
+            padding: 30px; border-radius: 20px; 
+        }
+        .warning-box h3 { color: #fb7185; font-size: 28px; margin-bottom: 15px; }
+        .warning-box i { margin-right: 10px; }
+        
+        .list-item { margin-bottom: 25px; display: flex; align-items: flex-start; }
+        .list-item i { color: #fb7185; font-size: 24px; margin-right: 20px; margin-top: 5px; }
+        .list-item div h4 { font-size: 24px; color: #f1f5f9; margin-bottom: 5px; }
+        .list-item div p { color: #94a3b8; font-size: 20px; line-height: 1.4; }
+        
+        .badge { 
+            display: inline-block; background: #fb7185; color: #fff; 
+            padding: 5px 15px; border-radius: 99px; font-weight: 700; 
+            font-size: 14px; margin-bottom: 10px; text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <div class="badge">Riesgo Tecnológico Detectado</div>
+    <h2 class="slide-title">Necesidad de Cambio: Vulnerabilidad y Obsolescencia</h2>
+    
+    <div class="content">
+        <div class="warning-box">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> El Problema Central</h3>
+            <p style="font-size: 22px; color: #e2e8f0;">
+                QueryDSL ha entrado en un estado de <strong>"End of Life" (EOL)</strong> técnico. La falta de mantenimiento activo representa un riesgo crítico para la estabilidad y seguridad de los 87 módulos del proyecto.
+            </p>
+            <hr style="margin: 25px 0; border: 0; border-top: 1px solid #fb7185; opacity: 0.3;">
+            <p style="color: #94a3b8; font-style: italic;">
+                "Depender de librerías sin soporte activo bloquea la actualización a futuras versiones de Spring Boot y Java."
+            </p>
+        </div>
+
+        <div>
+            <div class="list-item">
+                <i class="fa-solid fa-shield-virus"></i>
+                <div>
+                    <h4>Vulnerabilidades de Seguridad</h4>
+                    <p>Exposición a fallos detectados en dependencias transitivas que ya no reciben parches (CVEs sin resolver).</p>
+                </div>
+            </div>
+
+            <div class="list-item">
+                <i class="fa-solid fa-ban"></i>
+                <div>
+                    <h4>Falta de Soporte Oficial</h4>
+                    <p>El repositorio oficial no presenta actividad significativa de mantenimiento para las versiones más recientes de Spring Data.</p>
+                </div>
+            </div>
+
+            <div class="list-item">
+                <i class="fa-solid fa-puzzle-piece"></i>
+                <div>
+                    <h4>Incompatibilidad con Java 17+</h4>
+                    <p>Conflictos recurrentes con el procesamiento de anotaciones (APT) y la generación de QClasses en entornos modernos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: auto; background: #0f172a; padding: 20px; border-radius: 15px; border-left: 4px solid #2dd4bf;">
+        <p style="font-size: 18px; color: #2dd4bf;">
+            <strong>Decisión Estratégica:</strong> Migrar a <strong>MongoDB Native Query API</strong> elimina la dependencia de terceros y asegura que el 100% de la capa de persistencia sea mantenida por el equipo de Spring / MongoDB.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

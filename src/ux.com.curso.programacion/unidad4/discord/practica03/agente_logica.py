@@ -15,7 +15,7 @@ def ejecutar_suma(argumento):
         n2 = float(nums[1])
         return f"La suma de {n1} + {n2} es: {n1 + n2}"
     except:
-        return "Uso correcto: `!sumar 10 5`"
+        return "Uso correcto: '!sumar 10 5'"
 
 def buscar_en_diccionario(termino):
     if not termino: return " ¿Qué término buscas?"
@@ -45,7 +45,7 @@ def ejecutar_multiplicacion(argumento):
         n2 = float(nums[1])
         return f"La multiplicación de {n1} x {n2} es: {n1 * n2}"
     except:
-        return "Uso correcto: `!multiplicar 10 5`"
+        return "Uso correcto: '!multiplicar 10 5'"
 
 # --- FUNCIÓN EXTRA: Fecha y hora completa ---
 def obtener_fecha_completa():
@@ -99,12 +99,12 @@ def analizar_comando(entrada_usuario):
             
         elif comando == "!ayuda":
             return (" **Comandos V2:**\n"
-                    "!definir, !validar, !hora, !historial, !sumar <n1> <n2>")
+                    "!definir, !validar, !hora, !historial, !sumar <n1> <n2>, !multiplicar <n1> <n2>, !fecha")
         
         else:
-            return f"El comando `{comando}` no existe."
+            return f"El comando '{comando}' no existe."
             
-    return "💡 Usa `!` para comandos."
+    return " Usa '!' para comandos."
 
 
 
