@@ -1,29 +1,44 @@
-
 import discord
-import asyncio
+from discord.ext import commands
 import os
 from dotenv import load_dotenv
 
-# --- Unidad 2: Definición de Identificadores ---
+# --- UNIDAD 4.4: CARGA DE CONFIGURACIONES EXTERNAS ---
+# Cargamos las variables de entorno desde el archivo .env por seguridad
 load_dotenv()
-TOKEN = os.getenv('TOKEN')
-CANAL_ID = 123456789012345678  # Reemplaza con el ID de tu canal (sin comillas)
+TOKEN = os.getenv('DISCORD_TOKEN')
 
+# --- CONFIGURACIÓN DE INTENTS (UNIDAD 2.2) ---
+# Definimos los permisos necesarios que activamos en el Developer Portal
 intents = discord.Intents.default()
-client = discord.Client(intents=intents)
+intents.message_content = True  # Permite al bot leer el contenido de los mensajes
 
-@client.event
+# --- INSTANCIACIÓN DEL BOT ---
+# Definimos el prefijo '!' para identificar los comandos
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+# --- EVENTO DE CONEXIÓN (UNIDAD 4.1) ---
+@bot.event
 async def on_ready():
-    # Unidad 1.1: Importancia de los lenguajes
-    # Aquí el bot ya está "compilado" y conectado al servidor de Discord
-    print(f'Conectado exitosamente como {client.user}')
-    
-    # Unidad 3.3: Aplicación de algoritmo para enviar mensaje inicial
-    channel = client.get_channel(CANAL_ID)
-    if channel:
-        await channel.send("🚀 ¡Hola Mundo! Bot de Programación Estructurada inicializado.")
-    else:
-        print("Error: No se encontró el canal. Revisa el ID.")
+    """
+    Evento que se dispara cuando el bot se conecta exitosamente.
+    Sirve para confirmar que el intérprete de Python y la API están vinculados.
+    """
+    print(f'✅ Sistema en línea. Conectado como: {bot.user.name}')
+    print('--- Esperando instrucciones en Discord ---')
 
-# Ejecutar el cliente
-client.run(TOKEN)
+# --- COMANDO DE PRUEBA (UNIDAD 4.4.2) ---
+@bot.command()
+async def ping(ctx):
+    """
+    Comando simple para verificar la latencia de respuesta.
+    """
+    latencia = round(bot.latency * 1000)
+    await ctx.send(f'🏓 ¡Pong! Latencia del agente: {latencia}ms')
+
+# --- EJECUCIÓN DEL PROGRAMA (UNIDAD 1.4) ---
+if __name__ == "__main__":
+    if TOKEN:
+        bot.run(TOKEN)
+    else:
+        print("❌ ERROR: No se encontró el TOKEN. Revisa tu archivo .env")
