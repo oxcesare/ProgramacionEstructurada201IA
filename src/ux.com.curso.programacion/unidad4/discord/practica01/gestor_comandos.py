@@ -2,8 +2,7 @@ import datetime
 
 def analizar_comando(entrada_usuario):
     """
-    Segunda fase del Agente: Procesamiento de comandos y lógica dinámica.
-    Aquí el alumno aprende a separar la 'acción' de los 'datos'.
+    Segunda fase del Agente: Procesamiento de comandos y lógica dinámica.    
     """
     mensaje = entrada_usuario.lower().strip()
     
