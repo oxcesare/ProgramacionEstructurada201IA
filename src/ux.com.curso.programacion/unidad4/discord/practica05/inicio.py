@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 def mostrar_bienvenida():
     """Retorna la lista de comandos disponibles."""
     return (
-        "📜 Bot de Gestión de Tareas (Modo Estructurado):\n"
-        "📜 Primeros pasos Agente Discord UX:\n"
+        "📜 Bot de Gestión de Tareas (Programacion Estructurada):\n"
+        "📜 Primeros pasos Agente Discord UX:\n"        
         "📜 Esccriba !Exit para salir del Agente:"
     )
 
@@ -26,13 +26,7 @@ def main(entrada):
         # Selección de acción (Estructura de control)
         if comando == "exit":
             print("Saliendo del gestor...")
-            return "Saliendo del gestor..."
-                        
-        elif comando == "inicio":
-            print(mostrar_bienvenida())
-            return mostrar_bienvenida()
-            
-            
+            return "Saliendo del gestor..."        
         else:
             print(f" Error: Comando '!{comando}' no reconocido.")
             return f" Error: Comando '!{comando}' no reconocido."
@@ -62,6 +56,17 @@ async def on_message(message):
     if message.author == client.user:
         return
     
+    # Invocar la función de bienvenida 
+    if message.content.lower() == "!inicio":
+        bienvenida = mostrar_bienvenida()
+        main(message.content)        
+        await message.channel.send(bienvenida)
+        return
+    
+    #invocar la función principal para procesar comandos
+
+
+        
     # 3. Procesamiento: Pasamos el contenido del mensaje a nuestra lógica
     print(f"Mensaje recibido de {message.author}: {message.content}")
 
