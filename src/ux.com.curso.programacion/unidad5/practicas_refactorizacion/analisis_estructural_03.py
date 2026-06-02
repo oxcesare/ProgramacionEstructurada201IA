@@ -91,6 +91,7 @@ def buscar_error_minimo_mejorado(lista_errores):
 #          que no se procesen comandos repetidos en el mismo ciclo.
 # Problema: Algoritmo de búsqueda lineal doblemente anidado sumamente lento.
 # =====================================================================
+
 def depurar_usuarios_repetidos(lista_ids):
     lista_limpia = []
     

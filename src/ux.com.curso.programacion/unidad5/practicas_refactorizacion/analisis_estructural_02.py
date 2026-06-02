@@ -3,6 +3,7 @@ Materia: Programación Estructurada
 Laboratorio: Refactorización y Análisis de Código (Parte II)
 Alumno: [Tu Nombre]
 """
+
 import random  # Única librería importada por el novato
 
 # =====================================================================

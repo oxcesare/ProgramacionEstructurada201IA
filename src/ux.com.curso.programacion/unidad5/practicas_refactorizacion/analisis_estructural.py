@@ -33,6 +33,7 @@ def verificar_fermat_mejorado(a, b, c, n):
 # Sentido: Saber qué tan lejos está un robot (x1, y1) de su objetivo (x2, y2).
 # Problema: Cálculo manual tosco de raíz cuadrada y potencias.
 # =====================================================================
+
 def calcular_distancia(x1, y1, x2, y2):
     # Fórmula: raíz de ((x2-x1)^2 + (y2-y1)^2)
     diferencia_x = x2 - x1
