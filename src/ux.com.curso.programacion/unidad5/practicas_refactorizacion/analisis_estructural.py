@@ -48,6 +48,10 @@ def calcular_distancia(x1, y1, x2, y2):
 def calcular_distancia_mejorado(x1, y1, x2, y2):
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
+def calcular_distancia_pro(x1, y1, x2, y2):
+    # Calcula la distancia euclidiana exacta en una sola llamada de abstracción limpia
+    return math.hypot(x2 - x1, y2 - y1)
+
 # =====================================================================
 # RETO 3: Selector Aleatorio de Respuestas para el Bot
 # Sentido: Que el agente Discord responda con un saludo al azar.
@@ -117,6 +121,7 @@ if __name__ == "__main__":
     verificar_fermat_mejorado(3, 4, 5, 3)
     print("Distancia calculada:", calcular_distancia(0, 0, 3, 4))
     print("Distancia calculada (mejorado):", calcular_distancia_mejorado(0, 0, 3, 4))
+    print("Distancia calculada (pro):", calcular_distancia_pro(0, 0, 3, 4))
     print("Respuesta bot:", obtener_saludo_agente())
     print("Respuesta bot (mejorado):", obtener_saludo_agente_mejorado())
     print("Estado del log:", evaluar_error_sistema(0.85))
