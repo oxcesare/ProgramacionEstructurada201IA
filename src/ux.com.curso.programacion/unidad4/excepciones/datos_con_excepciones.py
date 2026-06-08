@@ -4,9 +4,9 @@ def obtener_edad():
    except ValueError:
     age = -1
 
-    if age >= 0 and age <= 150:
+   if age >= 0 and age <= 150:
         print("That is a fine age")
-    else:
+   else:
         print("This is not a valid age")
 
 def main():
